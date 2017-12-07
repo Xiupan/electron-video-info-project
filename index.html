@@ -24,6 +24,7 @@
       ipcRenderer.send('videoSubmitted', path)
     })
 
+    // this receives information from the Electron App
     ipcRenderer.on('videoGotMetadata', (event, duration) => {
       document.querySelector('#video-duration').innerHTML = `Video is ${duration} seconds long.`
     })
