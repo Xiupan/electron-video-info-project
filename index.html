@@ -9,6 +9,7 @@
       <input type="file" accept="video/*" />
     </div>
     <button type="submit">Get Length</button>
+    <h1 id="video-duration"></h1>
   </form>
 
   <script>
@@ -21,6 +22,10 @@
 
       // this sends information to the Electron App
       ipcRenderer.send('videoSubmitted', path)
+    })
+
+    ipcRenderer.on('videoGotMetadata', (event, duration) => {
+      document.querySelector('#video-duration').innerHTML = `Video is ${duration} seconds long.`
     })
   </script>
 </body>
