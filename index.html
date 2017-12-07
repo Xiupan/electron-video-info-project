@@ -12,9 +12,15 @@
   </form>
 
   <script>
+    const electron = require('electron')
+    const { ipcRenderer } = electron
+
     document.querySelector('form').addEventListener('submit', (event) => {
       event.preventDefault()
-      const file = document.querySelector('input').files[0]
+      const { path } = document.querySelector('input').files[0]
+
+      // this sends information to the Electron App
+      ipcRenderer.send('videoSubmitted', path)
     })
   </script>
 </body>
